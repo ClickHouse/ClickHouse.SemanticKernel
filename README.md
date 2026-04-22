@@ -8,6 +8,10 @@
 <img alt="NuGet Version" src="https://img.shields.io/nuget/v/ClickHouse.SemanticKernel?label=ClickHouse.SemanticKernel">
 </a>
 
+<a href="https://github.com/ClickHouse/ClickHouse.SemanticKernel/actions/workflows/tests.yml">
+<img src="https://github.com/ClickHouse/ClickHouse.SemanticKernel/actions/workflows/tests.yml/badge.svg?branch=main">
+</a>
+
 </p>
 
 A Semantic Kernel connector for [ClickHouse](https://clickhouse.com/), built on [ClickHouse.Driver](https://github.com/ClickHouse/clickhouse-cs). Use ClickHouse as a vector store from [Semantic Kernel](https://learn.microsoft.com/semantic-kernel/overview/) and any other `Microsoft.Extensions.VectorData` consumer. CRUD, filtered queries, and vector similarity search through the standard SK interface.
