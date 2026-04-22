@@ -24,33 +24,29 @@
 
 A Semantic Kernel connector for [ClickHouse](https://clickhouse.com/), built on [ClickHouse.Driver](https://github.com/ClickHouse/clickhouse-cs). Use ClickHouse as a vector store from [Semantic Kernel](https://learn.microsoft.com/semantic-kernel/overview/) and any other `Microsoft.Extensions.VectorData` consumer. CRUD, filtered queries, and vector similarity search through the standard SK interface.
 
-## How it fits together
-
-**[Semantic Kernel (SK)](https://learn.microsoft.com/semantic-kernel/overview/)** is Microsoft's open-source SDK for building AI agents in C#, Python, and Java. The Kernel holds AI services (chat completion, embeddings), plugins (your own code or OpenAPI endpoints exposed as callable functions), and memory. Agents use the kernel to plan, call tools, and retrieve context; when an LLM needs facts it doesn't have baked in, SK pulls them from a vector store and stuffs them into the prompt. That's the core RAG loop.
-
-**This connector** implements Microsoft.Extensions.VectorData  for ClickHouse. If you're using Semantic Kernel, register it and your agents can use ClickHouse as long-term memory. If you're not using SK, you still get a clean .NET API for vector CRUD and search backed by ClickHouse's `vector_similarity` HNSW index.
-
-## Typical use cases
-
-- **RAG over a knowledge base.** Embed docs/wiki pages/support tickets into ClickHouse, then at query time embed the user's question, retrieve the top-k nearest chunks, and feed them to the LLM as context. ClickHouse's column-store excels when the corpus has metadata (timestamps, authors, product areas) that you want to filter on alongside vector similarity.
-- **Agent long-term memory.** Store conversation summaries, user preferences, or tool-call results as embeddings. The agent retrieves relevant memories each turn via MEVD's `SearchAsync`.
-- **Semantic search over structured data.** Product catalogs, media libraries, research papers, anything where a natural-language query should match on meaning, not keywords. Combine with ClickHouse's analytical queries for faceted search.
-- **Hybrid pipelines.** Run vector search to get a candidate set, then use standard ClickHouse SQL (aggregations, joins, window functions) to rerank or aggregate. Because the vector column lives in the same table as your metadata, there's no cross-system join.
-
 ## Features
 
 - **Vector similarity search** via the native [`vector_similarity`](https://clickhouse.com/docs/engines/table-engines/mergetree-family/annindexes) HNSW index with `cosineDistance` or `L2Distance`
 - **LINQ-based filters** translated to ClickHouse SQL, including `has()` / `hasAny()` for array membership, null-safe equality, and range predicates
 - **Upsert semantics** on top of `ReplacingMergeTree` with `FINAL` reads for immediate consistency
 - **Dynamic collections** (`Dictionary<string, object?>`) alongside strongly-typed records
-- **Client-side embedding generation** via `IEmbeddingGenerator<string, Embedding<float>>` — set a generator at the store, collection, or property level
+- **Client-side embedding generation** via `IEmbeddingGenerator<string, Embedding<float>>`. Set a generator at the store, collection, or property level
 - **DI integration** with `AddClickHouseVectorStore` / `AddClickHouseCollection` extensions
 
-## Packages
+## Semantic Kernel
 
-| Package | Description |
-|---------|-------------|
-| `ClickHouse.SemanticKernel` | Vector store connector implementing `VectorStore` and `VectorStoreCollection<TKey, TRecord>` |
+**[Semantic Kernel (SK)](https://learn.microsoft.com/semantic-kernel/overview/)** is Microsoft's open-source SDK for building AI agents in C#, Python, and Java. The Kernel holds AI services (chat completion, embeddings), plugins (your own code or OpenAPI endpoints exposed as callable functions), and memory. Agents use the kernel to plan, call tools, and retrieve context; when an LLM needs facts it doesn't have baked in, SK pulls them from a vector store and stuffs them into the prompt. That's the core RAG loop.
+
+**This connector** implements Microsoft.Extensions.VectorData  for ClickHouse. If you're using Semantic Kernel, register it and your agents can use ClickHouse as long-term memory. If you're not using SK, you still get a clean .NET API for vector CRUD and search backed by ClickHouse's `vector_similarity` HNSW index.
+
+### Typical use cases
+
+- **RAG over a knowledge base.** Embed docs/wiki pages/support tickets into ClickHouse, then at query time embed the user's question, retrieve the top-k nearest chunks, and feed them to the LLM as context. ClickHouse's column-store excels when the corpus has metadata (timestamps, authors, product areas) that you want to filter on alongside vector similarity.
+- **Agent long-term memory.** Store conversation summaries, user preferences, or tool-call results as embeddings. The agent retrieves relevant memories each turn via MEVD's `SearchAsync`.
+- **Semantic search over structured data.** Product catalogs, media libraries, research papers, anything where a natural-language query should match on meaning, not keywords. Combine with ClickHouse's analytical queries for faceted search.
+- **Hybrid pipelines.** Run vector search to get a candidate set, then use standard ClickHouse SQL (aggregations, joins, window functions) to rerank or aggregate. Because the vector column lives in the same table as your metadata, there's no cross-system join.
+
+
 
 ## Getting started
 
