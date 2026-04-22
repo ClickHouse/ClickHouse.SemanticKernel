@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>VectorData.ConformanceTests</RootNamespace>
+    <NoWarn>$(NoWarn);MEVD9000</NoWarn> <!-- Microsoft.Extensions.VectorData experimental user-facing APIs -->
+    <NoWarn>$(NoWarn);MEVD9001</NoWarn> <!-- Microsoft.Extensions.VectorData experimental provider-facing APIs -->
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="System.Linq.Async" /> <!-- Remove when targeting .NET 10 -->
+    <PackageReference Include="Microsoft.Extensions.AI.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
+    <PackageReference Include="Microsoft.Extensions.VectorData.Abstractions" />
+  </ItemGroup>
+
+
+</Project>

@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>ClickHouse.SemanticKernel</AssemblyName>
+    <RootNamespace>ClickHouse.SemanticKernel</RootNamespace>
+    <IsPackable>true</IsPackable>
+    <NoWarn>$(NoWarn);MEVD9000;MEVD9001</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Title>ClickHouse connector for Microsoft.Extensions.VectorData</Title>
+    <Description>ClickHouse vector store connector for Microsoft.Extensions.VectorData and Semantic Kernel. Use ClickHouse as a vector database through the standard SK interface — CRUD, filtered queries, and vector similarity search.</Description>
+    <Authors>ClickHouse</Authors>
+    <PackageProjectUrl>https://github.com/ClickHouse/ClickHouse.SemanticKernel</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ClickHouse/ClickHouse.SemanticKernel</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <PackageTags>clickhouse;semantic-kernel;vector-data;vector-store;embeddings;ai;rag</PackageTags>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageReadmeFile>README.nuget.md</PackageReadmeFile>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClickHouse.Driver" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.VectorData.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="ClickHouse.ConformanceTests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.nuget.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+</Project>
