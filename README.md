@@ -8,8 +8,16 @@
 <img alt="NuGet Version" src="https://img.shields.io/nuget/v/ClickHouse.SemanticKernel?label=ClickHouse.SemanticKernel">
 </a>
 
+<a href="https://www.nuget.org/packages/ClickHouse.SemanticKernel">
+<img alt="NuGet Downloads" src="https://img.shields.io/nuget/dt/ClickHouse.SemanticKernel">
+</a>
+
 <a href="https://github.com/ClickHouse/ClickHouse.SemanticKernel/actions/workflows/tests.yml">
 <img src="https://github.com/ClickHouse/ClickHouse.SemanticKernel/actions/workflows/tests.yml/badge.svg?branch=main">
+</a>
+
+<a href="https://codecov.io/gh/ClickHouse/ClickHouse.SemanticKernel">
+<img src="https://codecov.io/gh/ClickHouse/ClickHouse.SemanticKernel/graph/badge.svg">
 </a>
 
 </p>

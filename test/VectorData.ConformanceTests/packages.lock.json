@@ -2,6 +2,21 @@
   "version": 2,
   "dependencies": {
     "net8.0": {
+      "coverlet.collector": {
+        "type": "Direct",
+        "requested": "[6.0.4, )",
+        "resolved": "6.0.4",
+        "contentHash": "lkhqpF8Pu2Y7IiN7OntbsTtdbpR1syMsm2F3IgX6ootA4ffRqWL5jF7XipHuZQTdVuWG/gVAAcf8mjk8Tz0xPg=="
+      },
+      "GitHubActionsTestLogger": {
+        "type": "Direct",
+        "requested": "[2.4.1, )",
+        "resolved": "2.4.1",
+        "contentHash": "SH1ar/kg36CggzMqLUDRoUqR8SSjK/JiQ2JS8MYg8u0RCLDkkDEbPGIN91omOPx9f2GuDqsxxofSdgsQje3Xuw==",
+        "dependencies": {
+          "Microsoft.TestPlatform.ObjectModel": "17.10.0"
+        }
+      },
       "Microsoft.Extensions.AI.Abstractions": {
         "type": "Direct",
         "requested": "[10.3.0, )",
