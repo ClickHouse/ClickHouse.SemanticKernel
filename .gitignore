@@ -154,3 +154,10 @@ dependency-reduced-pom.xml
 
 # MovieSearch demo downloads its dataset at runtime
 demo/MovieSearch/*.json
+
+# Coverage reports (coverlet.msbuild writes next to csproj; data-collector writes under results dir)
+coverage.*.xml
+coverage.*.info
+coverage.*.json
+*.coverage
+coverage/
