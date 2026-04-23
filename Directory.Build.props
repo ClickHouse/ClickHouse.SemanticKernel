@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Common Debug Settings">
-    <DebugType>full</DebugType>
+    <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
