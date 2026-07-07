@@ -66,6 +66,6 @@ public sealed class ClickHouseDynamicCollection : ClickHouseCollection<object, D
     private static ClickHouseClient CreateOwnedClient(string connectionString)
     {
         Verify.NotNullOrWhiteSpace(connectionString);
-        return new ClickHouseClient(connectionString);
+        return ClickHouseClientIdentity.CreateTaggedClient(connectionString);
     }
 }
