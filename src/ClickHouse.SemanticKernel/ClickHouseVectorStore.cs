@@ -70,7 +70,7 @@ public sealed class ClickHouseVectorStore : VectorStore
     private static ClickHouseClient CreateOwnedClient(string connectionString)
     {
         Verify.NotNullOrWhiteSpace(connectionString);
-        return new ClickHouseClient(connectionString);
+        return ClickHouseClientIdentity.CreateTaggedClient(connectionString);
     }
 
     /// <inheritdoc/>
