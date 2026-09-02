@@ -11,7 +11,7 @@ internal static class ClickHouseTypeMap
 {
     internal const string SupportedScalars = "string, int, long, float, double, bool, DateTime, DateTimeOffset, Guid";
 
-    internal const string SupportedDataTypes = SupportedScalars + ", arrays and List<T> of the above (except DateTime/DateTimeOffset elements)";
+    internal const string SupportedDataTypes = SupportedScalars + ", arrays and List<T> of the above";
 
     internal static bool IsScalarSupported(Type type)
     {
@@ -32,11 +32,7 @@ internal static class ClickHouseTypeMap
             || (TryGetCollectionElementType(type, out var elementType, out _)
                 // Array elements cannot themselves be Nullable in ClickHouse, so reject T?[] / List<T?>.
                 && Nullable.GetUnderlyingType(elementType) is null
-                && IsScalarSupported(elementType)
-                // TODO: re-enable once ClickHouse.Driver quotes DateTime64 elements inside
-                // Array(...) parameters — until then the upsert path fails at runtime.
-                && elementType != typeof(DateTime)
-                && elementType != typeof(DateTimeOffset));
+                && IsScalarSupported(elementType));
 
     internal static bool TryGetCollectionElementType(Type type, [NotNullWhen(true)] out Type? elementType, out bool isList)
     {
