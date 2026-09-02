@@ -41,12 +41,12 @@ public class ClickHouseCollectionTypeTests : IAsyncLifetime
                 Bools = [true, false, true],
                 Strings = ["a", "b", "c"],
                 Guids = [new Guid("11111111-1111-1111-1111-111111111111"), new Guid("22222222-2222-2222-2222-222222222222")],
-                // TODO: re-enable once the next ClickHouse.Driver release quotes DateTime64
-                // elements inside Array(...) parameters.
-                // Dates = [new DateTime(2024, 1, 15, 10, 30, 0, DateTimeKind.Utc), new DateTime(2025, 6, 1, 12, 0, 0, DateTimeKind.Utc)],
+                Dates = [new DateTime(2024, 1, 15, 10, 30, 0, DateTimeKind.Utc), new DateTime(2025, 6, 1, 12, 0, 0, DateTimeKind.Utc)],
+                DateTimeOffsets = [new DateTimeOffset(2024, 1, 15, 10, 30, 0, TimeSpan.Zero), new DateTimeOffset(2025, 6, 1, 12, 0, 0, TimeSpan.Zero)],
                 IntList = [10, 20, 30],
                 LongList = [1000L, 2000L],
                 StringList = ["x", "y"],
+                DateList = [new DateTime(2023, 3, 9, 8, 15, 0, DateTimeKind.Utc), new DateTime(2026, 11, 2, 23, 59, 0, DateTimeKind.Utc)],
                 Embedding = new float[] { 0.1f, 0.2f, 0.3f }
             };
 
@@ -62,11 +62,12 @@ public class ClickHouseCollectionTypeTests : IAsyncLifetime
             Assert.Equal(original.Bools, loaded.Bools);
             Assert.Equal(original.Strings, loaded.Strings);
             Assert.Equal(original.Guids, loaded.Guids);
-            // TODO: re-enable alongside the Dates field above.
-            // Assert.Equal(original.Dates, loaded.Dates);
+            Assert.Equal(original.Dates, loaded.Dates);
+            Assert.Equal(original.DateTimeOffsets, loaded.DateTimeOffsets);
             Assert.Equal(original.IntList, loaded.IntList);
             Assert.Equal(original.LongList, loaded.LongList);
             Assert.Equal(original.StringList, loaded.StringList);
+            Assert.Equal(original.DateList, loaded.DateList);
         }
         finally
         {
@@ -86,13 +87,13 @@ public class ClickHouseCollectionTypeTests : IAsyncLifetime
         [VectorStoreData] public bool[] Bools { get; set; } = [];
         [VectorStoreData] public string[] Strings { get; set; } = [];
         [VectorStoreData] public Guid[] Guids { get; set; } = [];
-        // TODO: re-enable once the next ClickHouse.Driver release quotes DateTime64
-        // elements inside Array(...) parameters.
-        // [VectorStoreData] public DateTime[] Dates { get; set; } = [];
+        [VectorStoreData] public DateTime[] Dates { get; set; } = [];
+        [VectorStoreData] public DateTimeOffset[] DateTimeOffsets { get; set; } = [];
 
         [VectorStoreData] public List<int> IntList { get; set; } = [];
         [VectorStoreData] public List<long> LongList { get; set; } = [];
         [VectorStoreData] public List<string> StringList { get; set; } = [];
+        [VectorStoreData] public List<DateTime> DateList { get; set; } = [];
 
         [VectorStoreVector(Dimensions: 3)]
         public ReadOnlyMemory<float> Embedding { get; set; }
